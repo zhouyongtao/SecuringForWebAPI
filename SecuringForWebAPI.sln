@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JwtForWebAPI", "JwtForWebAPI\JwtForWebAPI.csproj", "{C0FF6297-23DF-43CD-8D44-E5DF7679C3C6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityServer3ForWebAPI", "IdentityServer3ForWebAPI\IdentityServer3ForWebAPI.csproj", "{FB6FCA92-4D89-48DB-B3CA-D86A9C143788}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C0FF6297-23DF-43CD-8D44-E5DF7679C3C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C0FF6297-23DF-43CD-8D44-E5DF7679C3C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C0FF6297-23DF-43CD-8D44-E5DF7679C3C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C0FF6297-23DF-43CD-8D44-E5DF7679C3C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB6FCA92-4D89-48DB-B3CA-D86A9C143788}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB6FCA92-4D89-48DB-B3CA-D86A9C143788}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB6FCA92-4D89-48DB-B3CA-D86A9C143788}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB6FCA92-4D89-48DB-B3CA-D86A9C143788}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
