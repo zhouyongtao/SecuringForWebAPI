@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JwtForWebAPI", "JwtForWebAP
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityServer3ForWebAPI", "IdentityServer3ForWebAPI\IdentityServer3ForWebAPI.csproj", "{FB6FCA92-4D89-48DB-B3CA-D86A9C143788}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KatanaForWebAPI", "KatanaForWebAPI\KatanaForWebAPI.csproj", "{8F363C1A-6225-4812-9544-E7EDE3716885}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{FB6FCA92-4D89-48DB-B3CA-D86A9C143788}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FB6FCA92-4D89-48DB-B3CA-D86A9C143788}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FB6FCA92-4D89-48DB-B3CA-D86A9C143788}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F363C1A-6225-4812-9544-E7EDE3716885}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F363C1A-6225-4812-9544-E7EDE3716885}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F363C1A-6225-4812-9544-E7EDE3716885}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F363C1A-6225-4812-9544-E7EDE3716885}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
