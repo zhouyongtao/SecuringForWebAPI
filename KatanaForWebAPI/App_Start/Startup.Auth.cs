@@ -12,7 +12,6 @@ using System.Security.Claims;
 using System.Security.Principal;
 using System.Threading.Tasks;
 
-
 namespace KatanaForWebAPI
 {
     public partial class Startup
