@@ -7,11 +7,11 @@ using Microsoft.Owin.Security.OAuth;
 [assembly: OwinStartup(typeof(KatanaForWebAPI.Startup))]
 namespace KatanaForWebAPI
 {
-    public class Startup
+    public partial class Startup
     {
         public void Configuration(IAppBuilder app)
         {
-
+            ConfigureAuth(app);
         }
     }
 }
