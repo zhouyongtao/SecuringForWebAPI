@@ -8,6 +8,8 @@ using System.Security.Cryptography.X509Certificates;
 [assembly: OwinStartup(typeof(IdentityServer3ForWebAPI.Startup))]
 namespace IdentityServer3ForWebAPI
 {
+    //https://vimeo.com/113604459
+    //https://github.com/IdentityServer/IdentityServer3
     //https://identityserver.github.io/Documentation/docsv2/overview/mvcGettingStarted.html
     //https://github.com/IdentityServer/IdentityServer3.AccessTokenValidation
     public class Startup
