@@ -31,28 +31,19 @@ namespace IdentityServer3ForWebAPI
              */
 
             //配置idsv服务端
-            app.Map("/identity", options =>
+            app.Map("/identity", idsrvApp =>
             {
-                options.UseIdentityServer(new IdentityServerOptions
+                idsrvApp.UseIdentityServer(new IdentityServerOptions
                 {
                     EnableWelcomePage = true,
                     SiteName = "Embedded IdentityServer",
-                    //SigningCertificate = LoadCertificate(),
+                    //SigningCertificate = new X509Certificate2(string.Format(@"{0}bin\idsrv3test.pfx", AppDomain.CurrentDomain.BaseDirectory), "idsrv3test"),
                     Factory = new IdentityServerServiceFactory().UseInMemoryUsers(Users.Get())
                                                                 .UseInMemoryClients(Clients.Get())
                                                                 .UseInMemoryScopes(Scopes.Get()),
                     RequireSsl = false
                 });
             });
-        }
-
-        /// <summary>
-        /// 配置X509证书
-        /// </summary>
-        /// <returns></returns>
-        private X509Certificate2 LoadCertificate()
-        {
-            return new X509Certificate2(string.Format(@"{0}bin\idsrv3test.pfx", AppDomain.CurrentDomain.BaseDirectory), "idsrv3test");
         }
     }
 }
