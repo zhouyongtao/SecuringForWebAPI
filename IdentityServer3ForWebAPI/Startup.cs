@@ -8,12 +8,13 @@ using System.Security.Cryptography.X509Certificates;
 [assembly: OwinStartup(typeof(IdentityServer3ForWebAPI.Startup))]
 namespace IdentityServer3ForWebAPI
 {
-    //https://vimeo.com/113604459
-    //https://github.com/IdentityServer/IdentityServer3
-    //https://identityserver.github.io/Documentation/docsv2/overview/mvcGettingStarted.html
-    //https://github.com/IdentityServer/IdentityServer3.AccessTokenValidation
+
     public class Startup
     {
+        /// <summary>
+        /// 配置信息
+        /// </summary>
+        /// <param name="app"></param>
         public void Configuration(IAppBuilder app)
         {
             /*
@@ -30,13 +31,16 @@ namespace IdentityServer3ForWebAPI
                         });
             */
 
+            //配置idsv服务端
             app.UseIdentityServer(new IdentityServerOptions
             {
+                EnableWelcomePage = true,
                 SiteName = "Embedded IdentityServer",
-                SigningCertificate = LoadCertificate(),
+                //SigningCertificate = LoadCertificate(),
                 Factory = new IdentityServerServiceFactory().UseInMemoryUsers(Users.Get())
-                                                                .UseInMemoryClients(Clients.Get())
-                                                                .UseInMemoryScopes(Scopes.Get())
+                                                            .UseInMemoryClients(Clients.Get())
+                                                            .UseInMemoryScopes(Scopes.Get()),
+                RequireSsl = false
             });
         }
         private X509Certificate2 LoadCertificate()
