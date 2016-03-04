@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityServer3ForWebAPI", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KatanaForWebAPI", "KatanaForWebAPI\KatanaForWebAPI.csproj", "{8F363C1A-6225-4812-9544-E7EDE3716885}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityServer3ForWebAPI.Tests", "IdentityServer3ForWebAPI.Tests\IdentityServer3ForWebAPI.Tests.csproj", "{821E3BF8-D728-4D27-9195-9A10B4034629}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{AD6530B0-5575-4C44-9038-2F70B1DAF39B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,8 +31,15 @@ Global
 		{8F363C1A-6225-4812-9544-E7EDE3716885}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8F363C1A-6225-4812-9544-E7EDE3716885}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8F363C1A-6225-4812-9544-E7EDE3716885}.Release|Any CPU.Build.0 = Release|Any CPU
+		{821E3BF8-D728-4D27-9195-9A10B4034629}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{821E3BF8-D728-4D27-9195-9A10B4034629}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{821E3BF8-D728-4D27-9195-9A10B4034629}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{821E3BF8-D728-4D27-9195-9A10B4034629}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{821E3BF8-D728-4D27-9195-9A10B4034629} = {AD6530B0-5575-4C44-9038-2F70B1DAF39B}
 	EndGlobalSection
 EndGlobal

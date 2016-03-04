@@ -26,12 +26,8 @@ namespace IdentityServer3ForWebAPI.Controllers
             var client = new TokenClient("http://localhost:20097/connect/token",
                                          "silicon",
                                          "F621F470-9731-4A25-80EF-67A6F7C5F4B8");
-            var token = client.RequestClientCredentialsAsync("api1").Result;
-            if (token.IsError)
-            {
-                return Ok(new { IsError = true, Msg = token.HttpErrorReason, Data = string.Empty });
-            }
-            return Ok(new { IsError = false, Msg = string.Empty, Data = token.AccessToken });
+            var token = client.RequestClientCredentialsAsync("users roles").Result;
+            return Ok(token.Json);
         }
     }
 }

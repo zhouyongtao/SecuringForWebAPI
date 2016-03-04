@@ -14,6 +14,10 @@ namespace IdentityServer3ForWebAPI.Models
             {
                 new Scope
                 {
+                    Name = "users"
+                },
+                new Scope
+                {
                     Enabled = true,
                     Name = "roles",
                     Type = ScopeType.Identity,
