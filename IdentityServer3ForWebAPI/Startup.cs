@@ -8,7 +8,6 @@ using System.Security.Cryptography.X509Certificates;
 [assembly: OwinStartup(typeof(IdentityServer3ForWebAPI.Startup))]
 namespace IdentityServer3ForWebAPI
 {
-
     public class Startup
     {
         /// <summary>
@@ -18,31 +17,39 @@ namespace IdentityServer3ForWebAPI
         public void Configuration(IAppBuilder app)
         {
             /*
-                        app.Map("/identity", options =>
-                        {
-                            options.UseIdentityServer(new IdentityServerOptions
-                            {
-                                SiteName = "Embedded IdentityServer",
-                                SigningCertificate = LoadCertificate(),
-                                Factory = new IdentityServerServiceFactory().UseInMemoryUsers(Users.Get())
-                                                                            .UseInMemoryClients(Clients.Get())
-                                                                            .UseInMemoryScopes(Scopes.Get())
-                            });
-                        });
-            */
+            //默认路由
+             app.UseIdentityServer(new IdentityServerOptions
+             {
+                 EnableWelcomePage = true,
+                 SiteName = "Embedded IdentityServer",
+                 //SigningCertificate = LoadCertificate(),
+                 Factory = new IdentityServerServiceFactory().UseInMemoryUsers(Users.Get())
+                                                             .UseInMemoryClients(Clients.Get())
+                                                             .UseInMemoryScopes(Scopes.Get()),
+                 RequireSsl = false
+             });
+             */
 
             //配置idsv服务端
-            app.UseIdentityServer(new IdentityServerOptions
+            app.Map("/identity", options =>
             {
-                EnableWelcomePage = true,
-                SiteName = "Embedded IdentityServer",
-                //SigningCertificate = LoadCertificate(),
-                Factory = new IdentityServerServiceFactory().UseInMemoryUsers(Users.Get())
-                                                            .UseInMemoryClients(Clients.Get())
-                                                            .UseInMemoryScopes(Scopes.Get()),
-                RequireSsl = false
+                options.UseIdentityServer(new IdentityServerOptions
+                {
+                    EnableWelcomePage = true,
+                    SiteName = "Embedded IdentityServer",
+                    //SigningCertificate = LoadCertificate(),
+                    Factory = new IdentityServerServiceFactory().UseInMemoryUsers(Users.Get())
+                                                                .UseInMemoryClients(Clients.Get())
+                                                                .UseInMemoryScopes(Scopes.Get()),
+                    RequireSsl = false
+                });
             });
         }
+
+        /// <summary>
+        /// 配置X509证书
+        /// </summary>
+        /// <returns></returns>
         private X509Certificate2 LoadCertificate()
         {
             return new X509Certificate2(string.Format(@"{0}bin\idsrv3test.pfx", AppDomain.CurrentDomain.BaseDirectory), "idsrv3test");
