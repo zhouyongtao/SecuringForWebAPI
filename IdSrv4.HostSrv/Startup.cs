@@ -60,12 +60,12 @@ namespace IdSrv4.HostSrv
             {
                 app.UseExceptionHandler("/Home/Error");
             }
-
             app.UseStaticFiles();
             app.UseCookiePolicy();
-
             app.UseIdentityServer();
 
+            // pipeline with a default route named 'default' and the following template: '{controller=Home}/{action=Index}/{id?}'.
+            // app.UseMvcWithDefaultRoute();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
