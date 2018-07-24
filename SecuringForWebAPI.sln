@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JwtForWebAPI", "JwtForWebAPI\JwtForWebAPI.csproj", "{C0FF6297-23DF-43CD-8D44-E5DF7679C3C6}"
 EndProject
@@ -12,6 +12,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityServer3ForWebAPI.Tests", "IdentityServer3ForWebAPI.Tests\IdentityServer3ForWebAPI.Tests.csproj", "{821E3BF8-D728-4D27-9195-9A10B4034629}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{AD6530B0-5575-4C44-9038-2F70B1DAF39B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdSrv4.HostSrv", "IdSrv4.HostSrv\IdSrv4.HostSrv.csproj", "{096B93B2-AE30-4315-9184-3061FD87882C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,11 +37,18 @@ Global
 		{821E3BF8-D728-4D27-9195-9A10B4034629}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{821E3BF8-D728-4D27-9195-9A10B4034629}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{821E3BF8-D728-4D27-9195-9A10B4034629}.Release|Any CPU.Build.0 = Release|Any CPU
+		{096B93B2-AE30-4315-9184-3061FD87882C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{096B93B2-AE30-4315-9184-3061FD87882C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{096B93B2-AE30-4315-9184-3061FD87882C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{096B93B2-AE30-4315-9184-3061FD87882C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{821E3BF8-D728-4D27-9195-9A10B4034629} = {AD6530B0-5575-4C44-9038-2F70B1DAF39B}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {61867149-FAA9-4E97-B9ED-D4DB764D6A70}
 	EndGlobalSection
 EndGlobal
