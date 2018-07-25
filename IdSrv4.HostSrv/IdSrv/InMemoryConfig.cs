@@ -27,7 +27,7 @@ namespace IdSrv4.HostSrv.IdSrv
         public static IEnumerable<ApiResource> GetApiResources()
         {
             return new[]
-            {
+            {    
                 new ApiResource("api", "api service"),
                 new ApiResource("user", "user service"),
                 new ApiResource("order", "order service")
@@ -54,15 +54,23 @@ namespace IdSrv4.HostSrv.IdSrv
                 {
                     ClientId = "client_2",
                     ClientSecrets = new [] { new Secret("123456".Sha256()) },
+                    AllowedGrantTypes = GrantTypes.ClientCredentials,
+                    AccessTokenType=AccessTokenType.Reference,
+                    AllowedScopes = new [] { "user", "order" },
+                },
+                new Client
+                {
+                    ClientId = "client_3",
+                    ClientSecrets = new [] { new Secret("123456".Sha256()) },
                     AllowedGrantTypes = GrantTypes.ResourceOwnerPasswordAndClientCredentials,
                     AccessTokenType=AccessTokenType.Reference,
-
                     AllowedScopes = new [] { "user", "order" },
                     // Gets or sets a value indicating whether [allow offline access scope]. Defaults to false.
                     AllowOfflineAccess=true
                 }
             };
         }
+
 
         /// <summary>
         /// Define which uses will use this IdentityServer

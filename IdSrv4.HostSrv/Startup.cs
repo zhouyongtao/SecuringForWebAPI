@@ -46,7 +46,7 @@ namespace IdSrv4.HostSrv
             .AddDeveloperSigningCredential(persistKey: true, filename: "rsakey.rsa")
             // AddSigningCredential(new X509Certificate2(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, Configuration["cert.path"]), Configuration["cert.pwd"]))
             .AddInMemoryApiResources(InMemoryConfig.GetApiResources())
-            //  .AddInMemoryIdentityResources(InMemoryConfig.GetIdentityResources())
+            .AddInMemoryIdentityResources(InMemoryConfig.GetIdentityResources())
             .AddInMemoryClients(InMemoryConfig.GetClients())
             .AddTestUsers(InMemoryConfig.GetUsers().ToList());
 
