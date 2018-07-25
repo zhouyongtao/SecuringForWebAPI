@@ -20,9 +20,9 @@ namespace IdSrv4.HostSrv.IdSrv
             {
                 new IdentityResources.OpenId(),
                 new IdentityResources.Profile(),
-                new IdentityResources.Email(),
-                new IdentityResources.Phone(),
-                new IdentityResources.Address()
+                //new IdentityResources.Email(),
+                //new IdentityResources.Phone(),
+                //new IdentityResources.Address()
             };
         }
 
@@ -34,7 +34,10 @@ namespace IdSrv4.HostSrv.IdSrv
         {
             return new[]
             {
-                new ApiResource("api", "api service"),
+                new ApiResource("api", "api service")
+                {
+                  //  ApiSecrets = { new Secret("api_pwd".Sha256()) }
+                },
                 new ApiResource("user", "user service"),
                 new ApiResource("order", "order service")
             };
@@ -51,7 +54,7 @@ namespace IdSrv4.HostSrv.IdSrv
                 // client credentials client
                 new Client
                 {
-                    ClientId = "client_1",
+                    ClientId = "client_credentials_jwt_grant",
                     ClientSecrets = new [] { new Secret("123456".Sha256()) },
                     AllowedGrantTypes = GrantTypes.ClientCredentials,
                     AccessTokenType=AccessTokenType.Jwt,
@@ -60,16 +63,16 @@ namespace IdSrv4.HostSrv.IdSrv
                 // client credentials client
                 new Client
                 {
-                    ClientId = "client_2",
+                    ClientId = "client_credentials_reference_grant",
                     ClientSecrets = new [] { new Secret("123456".Sha256()) },
                     AllowedGrantTypes = GrantTypes.ClientCredentials,
                     AccessTokenType=AccessTokenType.Reference,
-                    AllowedScopes = new [] { "user", "order" },
+                    AllowedScopes = GetApiResources().Select(t=>t.Name).ToArray()
                 },
                 // resource owner password grant client
                 new Client
                 {
-                    ClientId = "client_3",
+                    ClientId = "client_password_grant",
                     ClientSecrets = new [] { new Secret("123456".Sha256()) },
                     AllowedGrantTypes = GrantTypes.ResourceOwnerPasswordAndClientCredentials,
                     AccessTokenType=AccessTokenType.Reference,
@@ -87,7 +90,6 @@ namespace IdSrv4.HostSrv.IdSrv
                     },
                     RedirectUris = { "http://localhost:5002/signin-oidc" },
                     PostLogoutRedirectUris = { "http://localhost:5002/signout-callback-oidc" },
-
                     AllowedScopes =
                     {
                         IdentityServerConstants.StandardScopes.OpenId,
@@ -105,11 +107,9 @@ namespace IdSrv4.HostSrv.IdSrv
                     ClientName = "JavaScript Client",
                     AllowedGrantTypes = GrantTypes.Implicit,
                     AllowAccessTokensViaBrowser = true,
-
                     RedirectUris = { "http://localhost:5003/callback.html" },
                     PostLogoutRedirectUris = { "http://localhost:5003/index.html" },
                     AllowedCorsOrigins = { "http://localhost:5003" },
-
                     AllowedScopes =
                     {
                         IdentityServerConstants.StandardScopes.OpenId,
@@ -119,7 +119,6 @@ namespace IdSrv4.HostSrv.IdSrv
                 }
             };
         }
-
 
         /// <summary>
         /// Define which uses will use this IdentityServer

@@ -9,17 +9,8 @@ namespace IdSrv4.WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
     public class ValuesController : ControllerBase
     {
-        [HttpGet]
-        public IActionResult Claims()
-        {
-            //var info = from c in User.Claims select new { c.Type, c.Value };
-            //return new JsonResult(info.ToList());
-            return new JsonResult(from c in HttpContext.User.Claims select new { c.Type, c.Value });
-        }
-
         // GET api/values
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
@@ -27,11 +18,19 @@ namespace IdSrv4.WebApi.Controllers
             return new string[] { "value1", "value2" };
         }
 
-        // GET api/values/5
+        // GET api/values/1
         [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
+        [Authorize]
+        public ActionResult<IEnumerable<string>> Get(int id)
         {
-            return "value";
+            try
+            {
+                return new JsonResult(from c in HttpContext.User.Claims select new { c.Type, c.Value });
+            }
+            catch (Exception ex)
+            {
+                return new string[] { ex.Message };
+            }
         }
 
         // POST api/values
