@@ -59,3 +59,12 @@
         "S256"
     ]
 }
+
+-  IResourceOwnerPasswordValidator
+
+
+
+
+```
+openssl req -newkey rsa:2048 -nodes -keyout idsrv4.key -x509 -days 365 -out idsrv4.cer
+openssl pkcs12 -export -in idsrv4.cer -inkey idsrv4.key -out idsrv4.pfx

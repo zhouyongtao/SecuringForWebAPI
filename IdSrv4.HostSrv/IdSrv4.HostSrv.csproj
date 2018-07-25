@@ -49,6 +49,19 @@
 
   <ItemGroup>
     <Folder Include="Controllers\" />
+    <Folder Include="Certs\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Certs\idsrv4.cer">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Certs\idsrv4.key">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Certs\idsrv4.pfx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
   <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JSONSchema="" /></VisualStudio></ProjectExtensions>

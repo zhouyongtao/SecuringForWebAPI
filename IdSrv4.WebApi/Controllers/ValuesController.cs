@@ -15,8 +15,9 @@ namespace IdSrv4.WebApi.Controllers
         [HttpGet]
         public IActionResult Claims()
         {
-            var info = from c in User.Claims select new { c.Type, c.Value };
-            return new JsonResult(info.ToList());
+            //var info = from c in User.Claims select new { c.Type, c.Value };
+            //return new JsonResult(info.ToList());
+            return new JsonResult(from c in HttpContext.User.Claims select new { c.Type, c.Value });
         }
 
         // GET api/values

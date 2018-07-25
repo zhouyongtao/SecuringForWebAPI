@@ -43,12 +43,14 @@ namespace IdSrv4.HostSrv
             })
             //.AddDeveloperSigningCredential()
             //.AddDeveloperSigningCredential(persistKey: false)
-            .AddDeveloperSigningCredential(persistKey: true, filename: "rsakey.rsa")
-            // AddSigningCredential(new X509Certificate2(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, Configuration["cert.path"]), Configuration["cert.pwd"]))
+            //.AddDeveloperSigningCredential(persistKey: true, filename: "rsakey.rsa")
+            .AddSigningCredential(new X509Certificate2(Path.Combine(AppContext.BaseDirectory, Configuration["Certs:Path"]), Configuration["Certs:Pwd"]))
             .AddInMemoryApiResources(InMemoryConfig.GetApiResources())
             .AddInMemoryIdentityResources(InMemoryConfig.GetIdentityResources())
             .AddInMemoryClients(InMemoryConfig.GetClients())
             .AddTestUsers(InMemoryConfig.GetUsers().ToList());
+            // .AddResourceOwnerValidator<ResourceOwnerPasswordValidator>()
+            //.AddProfileService<ProfileService>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }

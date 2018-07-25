@@ -25,13 +25,14 @@ namespace IdSrv4.WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddAuthentication(IdentityServerAuthenticationDefaults.AuthenticationScheme)
-                     .AddIdentityServerAuthentication(options =>
-                     {
-                         options.Authority = "http://localhost:5000";
-                         options.ApiName = "api";
-                     });
-
+            services.AddAuthentication("Bearer")
+              .AddIdentityServerAuthentication(options =>
+              {
+                  options.Authority = "http://localhost:5000";
+                  options.RequireHttpsMetadata = false;
+                  options.ApiName = "api";
+              });
+   
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
@@ -42,6 +43,7 @@ namespace IdSrv4.WebApi
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseAuthentication();
 
             app.UseMvc();
         }
