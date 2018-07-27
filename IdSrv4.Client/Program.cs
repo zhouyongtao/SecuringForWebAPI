@@ -91,13 +91,6 @@ namespace IdSrv4.Client
             Console.WriteLine(message.Content.ReadAsStringAsync().Result);
         }
     }
-    public enum DefaultRoles
-    {
-        Developer,
-        Sales,
-        role1,
-        roles1
-    }
 
     /// <summary>
     /// Contains a number of different claims sets used to test round tripping claims sets.
