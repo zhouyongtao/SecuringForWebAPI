@@ -1,4 +1,5 @@
-﻿using IdentityServer4;
+﻿using IdentityModel;
+using IdentityServer4;
 using IdentityServer4.Models;
 using IdentityServer4.Test;
 using System;
@@ -36,7 +37,8 @@ namespace IdSrv4.HostSrv.IdSrv
             {
                 new ApiResource("api", "api service")
                 {
-                  //  ApiSecrets = { new Secret("api_pwd".Sha256()) }
+                   ApiSecrets = { new Secret("api_pwd".Sha256()) },
+                   UserClaims = { JwtClaimTypes.Name, JwtClaimTypes.Subject, JwtClaimTypes.PreferredUserName }
                 },
                 new ApiResource("user", "user service"),
                 new ApiResource("order", "order service")

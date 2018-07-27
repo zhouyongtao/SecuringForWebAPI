@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
 
 namespace IdSrv4.HostSrv
 {
@@ -32,6 +33,14 @@ namespace IdSrv4.HostSrv
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
+            //获得证书文件
+            var filePath = Path.Combine(AppContext.BaseDirectory, Configuration["Certs:Path"]);
+            if (!File.Exists(filePath))
+            {
+                throw new FileNotFoundException("Signing Certificate is missing!");
+            }
+            var x509Cert = new X509Certificate2(filePath, Configuration["Certs:Pwd"]);
+            // var credential = new SigningCredentials(new X509SecurityKey(x509Cert), "RS256");
 
             // configure identity server with in-memory stores, keys, clients and scopes
             services.AddIdentityServer(options =>
@@ -42,9 +51,9 @@ namespace IdSrv4.HostSrv
                 options.Events.RaiseSuccessEvents = true;
             })
             //.AddDeveloperSigningCredential()
-            //.AddDeveloperSigningCredential(persistKey: false)
-            //.AddDeveloperSigningCredential(persistKey: true, filename: "rsakey.rsa")
-            .AddSigningCredential(new X509Certificate2(Path.Combine(AppContext.BaseDirectory, Configuration["Certs:Path"]), Configuration["Certs:Pwd"]))
+            //.AddDeveloperSigningCredential(persistKey: true, filename: "rsakey.rsa")、
+            .AddSigningCredential(x509Cert)
+            // .AddSigningCredential(credential)
             .AddInMemoryApiResources(InMemoryConfig.GetApiResources())
             .AddInMemoryIdentityResources(InMemoryConfig.GetIdentityResources())
             .AddInMemoryClients(InMemoryConfig.GetClients())
