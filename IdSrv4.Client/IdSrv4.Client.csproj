@@ -16,6 +16,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="Certs\ecdas.pfx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Certs\idsrv4.cer">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

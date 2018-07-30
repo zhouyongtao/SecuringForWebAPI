@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using IdSrv4.HostSrv.IdSrv;
@@ -40,9 +41,11 @@ namespace IdSrv4.HostSrv
                 throw new FileNotFoundException("Signing Certificate is missing!");
             }
             var x509Cert = new X509Certificate2(filePath, Configuration["Certs:Pwd"]);
-            var credential = new SigningCredentials(new X509SecurityKey(x509Cert), "ES256");
-
-            // configure identity server with in-memory stores, keys, clients and scopes
+            var data = new byte[] { 21, 5, 8, 12, 207 };
+            var signature = ECDsaSignData(x509Cert, data);
+            bool verify = ECDsaVerifyData(x509Cert, data, signature);
+            //var credential = new SigningCredentials(new X509SecurityKey(x509Cert), "ES256");
+            //configure identity server with in-memory stores, keys, clients and scopes
             services.AddIdentityServer(options =>
             {
                 options.Events.RaiseErrorEvents = true;
@@ -50,10 +53,10 @@ namespace IdSrv4.HostSrv
                 options.Events.RaiseInformationEvents = true;
                 options.Events.RaiseSuccessEvents = true;
             })
-             //.AddDeveloperSigningCredential()
-             //.AddDeveloperSigningCredential(persistKey: true, filename: "rsakey.rsa")、
-             //   .AddSigningCredential(x509Cert)
-             .AddSigningCredential(credential)
+                //.AddDeveloperSigningCredential()
+                //.AddDeveloperSigningCredential(persistKey: true, filename: "rsakey.rsa")、
+                .AddSigningCredential(x509Cert)
+            //   .AddSigningCredential(credential)
             .AddInMemoryApiResources(InMemoryConfig.GetApiResources())
             .AddInMemoryIdentityResources(InMemoryConfig.GetIdentityResources())
             .AddInMemoryClients(InMemoryConfig.GetClients())
@@ -62,6 +65,29 @@ namespace IdSrv4.HostSrv
             //.AddProfileService<ProfileService>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+        }
+
+
+        private static byte[] ECDsaSignData(X509Certificate2 cert, byte[] data)
+        {
+            using (ECDsa ecdsa = cert.GetECDsaPrivateKey())
+            {
+                if (ecdsa == null)
+                    throw new ArgumentException("Cert must have an ECDSA private key", nameof(cert));
+
+                return ecdsa.SignData(data, HashAlgorithmName.SHA256);
+            }
+        }
+
+        private static bool ECDsaVerifyData(X509Certificate2 cert, byte[] data, byte[] signature)
+        {
+            using (ECDsa ecdsa = cert.GetECDsaPublicKey())
+            {
+                if (ecdsa == null)
+                    throw new ArgumentException("Cert must be an ECDSA cert", nameof(cert));
+
+                return ecdsa.VerifyData(data, signature, HashAlgorithmName.SHA256);
+            }
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

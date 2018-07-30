@@ -43,11 +43,12 @@ namespace IdSrv4.Client
 
         static void Main(string[] args)
         {
-            using (RSACryptoServiceProvider provider = new RSACryptoServiceProvider(2048))
-            {
-                // Console.WriteLine(Convert.ToBase64String(provider.ExportCspBlob(false)) + "|");   //PublicKey
-                //Console.WriteLine(Convert.ToBase64String(provider.ExportCspBlob(true)));    //PrivateKey
-            }
+            //using (RSACryptoServiceProvider provider = new RSACryptoServiceProvider(2048))
+            //{
+            //    Console.WriteLine(Convert.ToBase64String(provider.ExportCspBlob(false)));   //PublicKey
+            //    Console.WriteLine(Convert.ToBase64String(provider.ExportCspBlob(true)));    //PrivateKey
+            //}
+
             //openssl genrsa -out rsa_1024_priv.pem 1024
             string _privateKey = @"MIICXgIBAAKBgQC0xP5HcfThSQr43bAMoopbzcCyZWE0xfUeTA4Nx4PrXEfDvybJ
 EIjbU/rgANAty1yp7g20J7+wVMPCusxftl/d0rPQiCLjeZ3HtlRKld+9htAZtHFZ
