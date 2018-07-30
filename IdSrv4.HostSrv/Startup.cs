@@ -40,7 +40,7 @@ namespace IdSrv4.HostSrv
                 throw new FileNotFoundException("Signing Certificate is missing!");
             }
             var x509Cert = new X509Certificate2(filePath, Configuration["Certs:Pwd"]);
-            // var credential = new SigningCredentials(new X509SecurityKey(x509Cert), "RS256");
+            var credential = new SigningCredentials(new X509SecurityKey(x509Cert), "ES256");
 
             // configure identity server with in-memory stores, keys, clients and scopes
             services.AddIdentityServer(options =>
@@ -50,10 +50,10 @@ namespace IdSrv4.HostSrv
                 options.Events.RaiseInformationEvents = true;
                 options.Events.RaiseSuccessEvents = true;
             })
-            //.AddDeveloperSigningCredential()
-            //.AddDeveloperSigningCredential(persistKey: true, filename: "rsakey.rsa")、
-            .AddSigningCredential(x509Cert)
-            // .AddSigningCredential(credential)
+             //.AddDeveloperSigningCredential()
+             //.AddDeveloperSigningCredential(persistKey: true, filename: "rsakey.rsa")、
+             //   .AddSigningCredential(x509Cert)
+             .AddSigningCredential(credential)
             .AddInMemoryApiResources(InMemoryConfig.GetApiResources())
             .AddInMemoryIdentityResources(InMemoryConfig.GetIdentityResources())
             .AddInMemoryClients(InMemoryConfig.GetClients())
