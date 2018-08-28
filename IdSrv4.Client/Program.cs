@@ -16,33 +16,13 @@ namespace IdSrv4.Client
 {
     class Program
     {
-        /// <summary>
-        /// Creates a new RSA security key.
-        /// </summary>
-        /// <returns></returns>
-        public static RsaSecurityKey CreateRsaSecurityKey()
-        {
-            var rsa = RSA.Create();
-            RsaSecurityKey key;
-            if (rsa is RSACryptoServiceProvider)
-            {
-                rsa.Dispose();
-                var cng = new RSACng(2048);
-                var parameters = cng.ExportParameters(includePrivateParameters: true);
-                key = new RsaSecurityKey(parameters);
-            }
-            else
-            {
-                rsa.KeySize = 2048;
-                key = new RsaSecurityKey(rsa);
-            }
-            key.KeyId = CryptoRandom.CreateUniqueId(16);
-            return key;
-        }
-
-
         static void Main(string[] args)
         {
+            Task.Run(() =>
+            {
+                return Run();
+            });
+
             //using (RSACryptoServiceProvider provider = new RSACryptoServiceProvider(2048))
             //{
             //    Console.WriteLine(Convert.ToBase64String(provider.ExportCspBlob(false)));   //PublicKey
@@ -86,10 +66,6 @@ qoOmjXaCv58CSRAlAQIDAQAB".Replace("\n", "");
             plainText = Encoding.UTF8.GetString(plainTextBytes);
             Console.WriteLine($"{nameof(plainText)}:{plainText}");
 
-            Task.Run(() =>
-            {
-                return Run();
-            });
             Console.ReadLine();
         }
 
@@ -158,6 +134,31 @@ qoOmjXaCv58CSRAlAQIDAQAB".Replace("\n", "");
                 Console.Read();
             }
             Console.WriteLine(message.Content.ReadAsStringAsync().Result);
+        }
+
+
+        /// <summary>
+        /// Creates a new RSA security key.
+        /// </summary>
+        /// <returns></returns>
+        public static RsaSecurityKey CreateRsaSecurityKey()
+        {
+            var rsa = RSA.Create();
+            RsaSecurityKey key;
+            if (rsa is RSACryptoServiceProvider)
+            {
+                rsa.Dispose();
+                var cng = new RSACng(2048);
+                var parameters = cng.ExportParameters(includePrivateParameters: true);
+                key = new RsaSecurityKey(parameters);
+            }
+            else
+            {
+                rsa.KeySize = 2048;
+                key = new RsaSecurityKey(rsa);
+            }
+            key.KeyId = CryptoRandom.CreateUniqueId(16);
+            return key;
         }
 
         private static RSA CreateRsaFromPrivateKey(string privateKey)
